@@ -8,5 +8,8 @@ class Config:
     DEEPGRAM_MODEL = os.getenv("DEEPGRAM_MODEL", "nova-3")
     ELEVENLABS_VOICE = os.getenv("ELEVENLABS_VOICE_ID")  # required
     ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")  # required
+    AZURE_OPENAI_ENDPOINT=os.getenv("AZURE_OPENAI_ENDPOINT")
+    AZURE_OPENAI_KEY=os.getenv("AZURE_OPENAI_KEY")
+    AZURE_OPENAI_DEPLOYMENT=os.getenv("AZURE_OPENAI_DEPLOYMENT")
 
 config = Config()
