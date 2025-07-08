@@ -1,26 +1,23 @@
-import asyncio
-from livekit.agents import WorkerOptions, AgentInfo
-from agent import create_agent, MyWorker
-from config import settings
+from livekit import agents
+from agent import Assistant
+from session import create_session, get_room_options
 
-async def main():
-    agent = create_agent()
+async def entrypoint(ctx: agents.JobContext):
+    session = create_session()
 
-    info = AgentInfo(
-        id=settings.AGENT_ID,
-        name=settings.AGENT_NAME,
+    await session.start(
+        room=ctx.room,
+        agent=Assistant(),
+        room_input_options=get_room_options(),
     )
 
-    opts = WorkerOptions(
-        api_key=settings.LIVEKIT_API_KEY,
-        secret_key=settings.LIVEKIT_API_SECRET,
-        url=settings.LIVEKIT_URL,
-        agent_info=info,
-        room=settings.ROOM,
-    )
+    await ctx.connect()
 
-    worker = MyWorker.create(agent=agent, options=opts)
-    await worker.run()
+    await session.generate_reply(
+        instructions="Greet the user and offer your assistance."
+    )
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    agents.cli.run_app(
+        agents.WorkerOptions(entrypoint_fnc=entrypoint)
+    )
