@@ -2,7 +2,7 @@ from livekit.agents import AgentSession, RoomInputOptions
 from livekit.plugins import openai, deepgram, silero, noise_cancellation
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 from livekit.plugins.elevenlabs import TTS as ElevenLabsTTS
-from config import config
+from config.config import config
 
 
 
