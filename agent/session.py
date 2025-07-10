@@ -1,24 +1,18 @@
 from livekit.agents import AgentSession, RoomInputOptions
-from livekit.plugins import openai, deepgram, silero, noise_cancellation
-from livekit.plugins.turn_detector.multilingual import MultilingualModel
-from livekit.plugins.elevenlabs import TTS as ElevenLabsTTS
-from config.config import config
+from livekit.plugins import noise_cancellation
+from config.config_llm import get_llm_config
+from config.config_tts import get_tts_config
+from config.config_stt import get_stt_config
+from config.config_noise_adapter import get_vad_config,get_tunr_config
 
-
-
-llm = openai.LLM.with_azure(
-        api_key=config.AZURE_OPENAI_KEY,
-        api_version=config.AZURE_API_VERSION,
-        azure_endpoint=config.AZURE_OPENAI_ENDPOINT,
-    )
 
 def create_session() -> AgentSession:
     return AgentSession(
-        stt=deepgram.STT(model=config.DEEPGRAM_MODEL, language="multi"),
-        llm=llm,
-        tts=ElevenLabsTTS(),
-        vad=silero.VAD.load(),
-        turn_detection=MultilingualModel(),
+        stt=get_stt_config(),
+        llm=get_llm_config(),
+        tts=get_tts_config(),
+        vad=get_vad_config(),
+        turn_detection=get_tunr_config(),
     )
 
 def get_room_options() -> RoomInputOptions:
