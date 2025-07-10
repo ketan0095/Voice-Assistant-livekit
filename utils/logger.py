@@ -34,19 +34,19 @@ class VirtualAssistantLogger:
         else:
             self.logger.info(f"{self.name}: {message}")
     
-    def debug(self, message: str, color: Optional[LogColor] = None):
+    def debug(self, message: str, color: Optional[LogColor] = LogColor.MAGENTA):
         if color:
             self._colored_print(message, color, "DEBUG")
         else:
             self.logger.debug(f"{self.name}: {message}")
     
-    def warning(self, message: str, color: Optional[LogColor] = None):
+    def warning(self, message: str, color: Optional[LogColor] = LogColor.YELLOW):
         if color:
             self._colored_print(message, color, "WARNING")
         else:
             self.logger.warning(f"{self.name}: {message}")
     
-    def error(self, message: str, color: Optional[LogColor] = None):
+    def error(self, message: str, color: Optional[LogColor] = LogColor.RED):
         if color:
             self._colored_print(message, color, "ERROR")
         else:

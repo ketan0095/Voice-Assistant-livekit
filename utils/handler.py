@@ -1,6 +1,9 @@
 
-from livekit.agents import AgentSession,MetricsCollectedEvent,UserStateChangedEvent,AgentStateChangedEvent
+from livekit.agents import AgentSession,MetricsCollectedEvent,UserStateChangedEvent,AgentStateChangedEvent,JobContext
+from livekit import rtc
+from utils.logger import VirtualAssistantLogger
 
+logger = VirtualAssistantLogger()
 
 def speech_handler(session:AgentSession):
 
@@ -32,3 +35,21 @@ def handle_inactivity(session: AgentSession):
     def on_agent_state_changed(ev: AgentStateChangedEvent):
         #TODO: Track assistant activity here
         ...
+
+async def handle_participant_disconnected(session: AgentSession, ctx: JobContext, participant: rtc.RemoteParticipant):
+    
+    try:
+        if participant.kind == rtc.ParticipantKind.PARTICIPANT_KIND_AGENT:
+            logger.info("Agent %s disconnected"+ participant.identity)
+        elif participant.kind == rtc.ParticipantKind.PARTICIPANT_KIND_SIP:
+            logger.info(f"SIP participant {participant.identity} disconnected")
+        else:
+            logger.info(f"Participant {participant.identity} disconnected ({participant.kind})")
+
+        if session:
+            # handle session background tasks
+            ...
+
+        await ctx.delete_room()
+    except Exception as e:
+        logger.error(f"Error during participant disconnect handler: {e}")
