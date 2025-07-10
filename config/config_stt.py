@@ -1,5 +1,5 @@
 from livekit.plugins import deepgram
-from config import config
+from config.config import Config
 
 def get_stt_config():
-    return deepgram.STT(model=config.DEEPGRAM_MODEL, language="multi")
+    return deepgram.STT(model=Config.DEEPGRAM_MODEL, language="multi")
