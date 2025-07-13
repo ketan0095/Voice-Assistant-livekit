@@ -2,13 +2,13 @@ from livekit.agents import AgentSession, RoomInputOptions
 from livekit.plugins import noise_cancellation
 from config.config_llm import get_azure_openai_llm
 from config.config_tts import get_tts_config
-from config.config_stt import get_stt_config
+from config.config_stt import get_deepgram_stt
 from config.config_noise_adapter import get_vad_config,get_tunr_config
 
 
 def create_session() -> AgentSession:
     return AgentSession(
-        stt=get_stt_config(),
+        stt=get_deepgram_stt(),
         llm=get_azure_openai_llm(),
         tts=get_tts_config(),
         vad=get_vad_config(),

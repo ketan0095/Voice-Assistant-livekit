@@ -1,11 +1,8 @@
 from config.config import Config
 from livekit.plugins import openai, anthropic, ollama, togetherai, mistral, cohere
+from utils.helper import require
 
 
-def require(value, name: str):
-    if not value:
-        raise ValueError(f"Missing required config value: {name}")
-    return value
 
 # Azure OpenAI
 def get_azure_openai_llm():
