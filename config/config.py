@@ -4,17 +4,22 @@ import os
 load_dotenv()
 
 class Config:
-    OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-    DEEPGRAM_MODEL = os.getenv("DEEPGRAM_MODEL", "nova-3")
-    ELEVENLABS_VOICE = os.getenv("ELEVENLABS_VOICE_ID")  
-    ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")  
+    # ------- LLM provider ----
     AZURE_OPENAI_ENDPOINT=os.getenv("AZURE_OPENAI_ENDPOINT")
     AZURE_OPENAI_KEY=os.getenv("AZURE_OPENAI_KEY")
-    AZURE_OPENAI_DEPLOYMENT=os.getenv("AZURE_OPENAI_DEPLOYMENT")
+    AZURE_DEPLOYMENT_NAME=os.getenv("AZURE_OPENAI_DEPLOYMENT")
     AZURE_API_VERSION=os.getenv("AZURE_API_VERSION")
+    OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    # ------- STT provider ----
+    DEEPGRAM_MODEL = os.getenv("DEEPGRAM_MODEL", "nova-3")
+    DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
+    # ------- TTS provider ----
+    ELEVENLABS_VOICE = os.getenv("ELEVENLABS_VOICE_ID")  
+    ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")  
+    
 
 
-    # ========== LLM PROVIDERS ==========
+    # ========== Other LLM PROVIDERS ==========
     # OpenAI (Public API)
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
@@ -23,23 +28,11 @@ class Config:
     ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
     CLAUDE_MODEL = os.getenv("CLAUDE_MODEL", "claude-3-sonnet-20240229")
 
-    # Mistral
-    MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
-    MISTRAL_MODEL = os.getenv("MISTRAL_MODEL", "mistral-small")
-
-    # Together AI
-    TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
-    TOGETHER_MODEL = os.getenv("TOGETHER_MODEL", "meta-llama/Llama-3-70b-chat-hf")
-
-    # Cohere
-    COHERE_API_KEY = os.getenv("COHERE_API_KEY")
-    COHERE_MODEL = os.getenv("COHERE_MODEL", "command-r-plus")
-
     # Ollama (local)
     OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3")
     OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
-    # ========== STT PROVIDERS ==========
+    # ========== Other STT PROVIDERS ==========
     # Whisper API (OpenAI)
     WHISPER_API_MODEL = os.getenv("WHISPER_API_MODEL", "whisper-1")
     WHISPER_API_LANGUAGE = os.getenv("WHISPER_API_LANGUAGE", "en")
@@ -61,6 +54,14 @@ class Config:
     ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
     ASSEMBLYAI_MODEL = os.getenv("ASSEMBLYAI_MODEL", "latest")
     ASSEMBLYAI_LANGUAGE = os.getenv("ASSEMBLYAI_LANGUAGE", "en")
+
+
+    # ========== Other TTS PROVIDERS ==========
+    # OpenAI TTS
+    OPENAI_TTS_VOICE = os.getenv("OPENAI_TTS_VOICE")  # e.g., "alloy", "shimmer"
+
+    # Local system TTS
+    LOCAL_TTS_COMMAND = os.getenv("LOCAL_TTS_COMMAND")  # e.g., "say" or "espeak"
 
 
 config = Config()
