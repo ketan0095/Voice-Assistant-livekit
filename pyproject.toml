@@ -4,9 +4,22 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "cffi==1.17.1",
+    "cryptography==45.0.2",
+    "pycparser==2.22",
+    "livekit==0.15.0",
+    "protobuf==4.23.3"
+
+]
 
 [tool.ruff]
 line-length = 88
 select = ["E", "F", "W", "C90"]
 ignore = ["E203"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.3",
+]
+
