@@ -24,28 +24,29 @@ This project provides a blueprint for building HIPAA-friendly voice assistants f
 
 ## 🏗️ Project Structure
 
-├── agent/ # LiveKit Agent entry points
-│ ├── agent.py # Main agent logic
-│ └── session.py # Handles session lifecycle & memory
-│
-├── config/ # Config management 
-├── KMS/ # Key management / secrets (optional)
-│
-├── prompt_store/ # Prompt templates & rules
-│ ├── global_rules.py # Global voice rules
-│ ├── master_prompt.py # Persona + org prompt templates
-│ └── prompt_builder.py # Assembles full prompt dynamically
-│
-├── utils/ # Utilities and support logic
-│ ├── handler.py # Message handlers
-│ ├── helper.py # Utility functions
-│ ├── logger.py # Logging setup
-│ └── types.py # Custom types like CallContext
-│
-├── main.py # Launch agent or service
-├── .env # Environment variables (LiveKit keys, STT/TTS keys)
-├── pyproject.toml # Dependencies, Ruff, Black etc.
-└── README.md # You're here!
+- `agent/` – LiveKit Agent entry points  
+  - `agent.py` – Main agent logic  
+  - `session.py` – Handles session lifecycle & memory  
+
+- `config/` – Config management
+
+- `KMS/` – Key management / secrets (optional)
+
+- `prompt_store/` – Prompt templates & rules  
+  - `global_rules.py` – Global voice rules  
+  - `master_prompt.py` – Persona + org prompt templates  
+  - `prompt_builder.py` – Assembles full prompt dynamically  
+
+- `utils/` – Utilities and support logic  
+  - `handler.py` – Message handlers  
+  - `helper.py` – Utility functions  
+  - `logger.py` – Logging setup  
+  - `types.py` – Custom types like `CallContext`  
+
+- `main.py` – Launch agent or service  
+- `.env` – Environment variables (LiveKit keys, STT/TTS keys)  
+- `pyproject.toml` – Dependencies, Ruff, Black etc.  
+- `README.md` – You're here!
 
 ## 🚀 Quick Start
 
