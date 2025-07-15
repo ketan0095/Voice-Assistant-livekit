@@ -1,5 +1,7 @@
-from config.config import Config
+"Handle all llm configs for agent."
+
 from livekit.plugins import openai, anthropic
+from config.config import Config # pylint: disable=import-error
 from utils.helper import require
 
 
@@ -17,7 +19,7 @@ def get_azure_openai_llm():
 # OpenAI
 def get_openai_llm():
     """Return an OpenAI LLM instance configured from environment."""
-    return openai.LLM.with_openai(
+    return openai.LLM(
         api_key=require(Config.OPENAI_API_KEY, "OPENAI_API_KEY"),
         model=require(Config.OPENAI_MODEL, "OPENAI_MODEL"),
     )
@@ -26,16 +28,7 @@ def get_openai_llm():
 # Anthropic
 def get_claude_llm():
     """Return an Anthropic Claude LLM instance configured from environment."""
-    return anthropic.LLM.with_anthropic(
+    return anthropic.LLM(
         api_key=require(Config.ANTHROPIC_API_KEY, "ANTHROPIC_API_KEY"),
         model=require(Config.CLAUDE_MODEL, "CLAUDE_MODEL"),
-    )
-
-
-# Ollama (local model)
-def get_ollama_llm():
-    """Return an Ollama LLM instance configured from environment."""
-    return openai.LLM.with_ollama(
-        model=require(Config.OLLAMA_MODEL, "OLLAMA_MODEL"),
-        endpoint=getattr(Config, "OLLAMA_HOST", None),  # optional
     )

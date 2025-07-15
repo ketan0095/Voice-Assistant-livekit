@@ -1,15 +1,23 @@
+"""Agent runner."""
+import asyncio
+
 from livekit import agents
+
 from agent.agent import Assistant
 from agent.session import create_session, get_room_options
-from utils.handler import speech_handler,handle_participant_disconnected
-from utils.logger import VirtualAssistantLogger
 from prompt_store.prompt_builder import build_context
+from utils.handler import (
+    handle_participant_disconnected,
+    handle_shutdown,
+    speech_handler,
+)
+from utils.logger import VirtualAssistantLogger
 from utils.types import CallContext
-import asyncio
 
 agent_logger =VirtualAssistantLogger()
 
 async def entrypoint(ctx: agents.JobContext):
+    """Entrypoint for livekit agent."""
     # 1. Instantiate session
     session = create_session()
 
@@ -50,8 +58,11 @@ async def entrypoint(ctx: agents.JobContext):
     # 7. handle disconnect
     ctx.room.on(
             "participant_disconnected",
-            lambda p: asyncio.create_task(handle_participant_disconnected(session, ctx, p)),
+            lambda p: asyncio.create_task(handle_participant_disconnected(session, ctx, p)),  # noqa: E501
         )
+
+    # 8. shutdown agent
+    ctx.add_shutdown_callback(lambda: handle_shutdown(session, ctx))
 
 if __name__ == "__main__":
     agents.cli.run_app(

@@ -7,6 +7,7 @@ from config.config_noise_adapter import get_vad_config,get_turn_config
 
 
 def create_session() -> AgentSession:
+    """Create agent session."""
     return AgentSession(
         stt=get_deepgram_stt(),
         llm=get_azure_openai_llm(),
@@ -16,6 +17,7 @@ def create_session() -> AgentSession:
     )
 
 def get_room_options() -> RoomInputOptions:
+    """Collect room options for agent."""
     return RoomInputOptions(
         noise_cancellation=noise_cancellation.BVC()
     )

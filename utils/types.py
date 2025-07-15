@@ -1,6 +1,7 @@
-from livekit.agents import JobContext
-from typing import Optional
+"""Data classe for agent."""
 
+from typing import Optional
+from livekit.agents import JobContext
 
 class CallContext:
     """

@@ -25,3 +25,5 @@ dev = [
     "ruff>=0.12.3",
 ]
 
+[tool.pylint.'MESSAGES CONTROL']
+disable = ["fixme","broad-except","logging-fstring-interpolation"]

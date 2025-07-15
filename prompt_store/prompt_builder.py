@@ -1,4 +1,4 @@
-# prompt_builder.py
+"""Prompt building for agent."""
 
 from prompt_store.master_prompt import VOICE_AGENT_PERSONA, MASTER_PROMPT_TEMPLATE
 from prompt_store.global_rules import get_global_rules_text
@@ -16,10 +16,10 @@ def build_persona(org_info: dict) -> str:
         agent_name=org_info.get("agent_name", "Assistant"),
         company_name=org_info.get("company_name", "Your Company"),
         agent_goal=org_info.get("agent_goal", "assist users with their queries"),
-        trading_hours=org_info.get("trading_hours", "9 AM – 5 PM, Monday to Friday"),
+        trading_hours=org_info.get("trading_hours", "9 AM - 5 PM, Monday to Friday"),
         address=org_info.get("address", "Not Provided"),
         service_types=org_info.get("service_types", "General support"),
-        service_modalities=org_info.get("service_modalities", "in-person and telehealth"),
+        service_modalities=org_info.get("service_modalities", "in-person and telehealth"),  # noqa: E501
     )
 
 
