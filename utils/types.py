@@ -4,7 +4,7 @@ from typing import Optional
 from dataclasses import dataclass
 from livekit.agents import JobContext
 
-
+# pylint: disable=too-many-instance-attributes
 @dataclass
 class CallContext:
     """
