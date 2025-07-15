@@ -1,9 +1,12 @@
-from dotenv import load_dotenv
+"""Handle all secret keys"""
 import os
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
 class Config:
+    """Gather all required env vars."""
     # ------- LLM provider ----
     AZURE_OPENAI_ENDPOINT=os.getenv("AZURE_OPENAI_ENDPOINT")
     AZURE_OPENAI_KEY=os.getenv("AZURE_OPENAI_KEY")
@@ -14,9 +17,9 @@ class Config:
     DEEPGRAM_MODEL = os.getenv("DEEPGRAM_MODEL", "nova-3")
     DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
     # ------- TTS provider ----
-    ELEVENLABS_VOICE = os.getenv("ELEVENLABS_VOICE_ID")  
-    ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")  
-    
+    ELEVENLABS_VOICE = os.getenv("ELEVENLABS_VOICE_ID")
+    ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+
 
 
     # ========== Other LLM PROVIDERS ==========
@@ -33,12 +36,15 @@ class Config:
     OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
     # ========== Other STT PROVIDERS ==========
+
+    #Azure
+    AZURE_SPEECH_HOST =os.getenv("AZURE_SPEECH_HOST","")
     # Whisper API (OpenAI)
     WHISPER_API_MODEL = os.getenv("WHISPER_API_MODEL", "whisper-1")
     WHISPER_API_LANGUAGE = os.getenv("WHISPER_API_LANGUAGE", "en")
 
     # Whisper.cpp (local)
-    WHISPER_CPP_MODEL_PATH = os.getenv("WHISPER_CPP_MODEL_PATH", "./models/ggml-base.en.bin")
+    WHISPER_CPP_MODEL_PATH = os.getenv("WHISPER_CPP_MODEL_PATH", ".")
     WHISPER_CPP_LANGUAGE = os.getenv("WHISPER_CPP_LANGUAGE", "en")
 
     # Azure Speech-to-Text

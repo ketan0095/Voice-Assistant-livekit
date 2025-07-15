@@ -5,16 +5,19 @@ import sys
 from typing import Optional
 from enum import Enum
 
+
 class LogColor(Enum):
     """Color codes for logger."""
-    RED = '\033[91m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    BLUE = '\033[94m'
-    MAGENTA = '\033[95m'
-    CYAN = '\033[96m'
-    WHITE = '\033[97m'
-    RESET = '\033[0m'
+
+    RED = "\033[91m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    BLUE = "\033[94m"
+    MAGENTA = "\033[95m"
+    CYAN = "\033[96m"
+    WHITE = "\033[97m"
+    RESET = "\033[0m"
+
 
 class VirtualAssistantLogger:
     """Log messages with optional color formatting for virtual assistant events."""
@@ -32,7 +35,9 @@ class VirtualAssistantLogger:
 
     def _colored_print(self, message: str, color: LogColor, level: str = "INFO"):
         """Print a color-coded message to stdout."""
-        colored_message = f"{color.value}[{level}] {self.name}: {message}{LogColor.RESET.value}"  # noqa: E501
+        colored_message = (
+            f"{color.value}[{level}] {self.name}: {message}{LogColor.RESET.value}"
+        )
         print(colored_message)
 
     def info(self, message: str, color: Optional[LogColor] = LogColor.CYAN):

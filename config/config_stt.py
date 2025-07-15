@@ -34,4 +34,3 @@ def get_azure_stt():
         # Optionally add speech_host if needed
         speech_host=Config.AZURE_SPEECH_HOST,  # optional override
     )
-

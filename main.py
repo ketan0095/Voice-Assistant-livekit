@@ -1,4 +1,5 @@
 """Agent runner."""
+
 import asyncio
 
 from livekit import agents
@@ -14,7 +15,8 @@ from utils.handler import (
 from utils.logger import VirtualAssistantLogger
 from utils.types import CallContext
 
-agent_logger =VirtualAssistantLogger()
+agent_logger = VirtualAssistantLogger()
+
 
 async def entrypoint(ctx: agents.JobContext):
     """Entrypoint for livekit agent."""
@@ -22,25 +24,24 @@ async def entrypoint(ctx: agents.JobContext):
     session = create_session()
 
     # 2. Build Context TODO: Fetch this from DB
-    call_context :CallContext ={
-       'prompt':"",
-       "org_info":{
-        "agent_name": "John",
-        "company_name": "MediLink Health",
-        "agent_goal": "help users schedule, manage,appointments seamlessly",
-        "trading_hours": "8 AM – 8 PM, Monday to Saturday",
-        "address": "123 Health Blvd, Sydney, NSW 2000",
-        "service_types": "General Practice, Physiotherapy, Pathology",
-        "service_modalities": "in-person, telehealth, home visit",
+    call_context: CallContext = {
+        "prompt": "",
+        "org_info": {
+            "agent_name": "John",
+            "company_name": "MediLink Health",
+            "agent_goal": "help users schedule, manage,appointments seamlessly",
+            "trading_hours": "8 AM - 8 PM, Monday to Saturday",
+            "address": "123 Health Blvd, Sydney, NSW 2000",
+            "service_types": "General Practice, Physiotherapy, Pathology",
+            "service_modalities": "in-person, telehealth, home visit",
+        },
     }
-    }
-    call_context['prompt']= build_context(call_context["org_info"])
+    call_context["prompt"] = build_context(call_context["org_info"])
 
-    agent_logger.info("Updated prompt : "+str(call_context['prompt']))
-
+    agent_logger.info("Updated prompt : " + str(call_context["prompt"]))
 
     # 3. Build Agent
-    agent = Assistant(session,agent_logger,instructions=call_context['prompt'])
+    agent = Assistant(session, agent_logger, instructions=call_context["prompt"])
 
     # 4. Start session
     await session.start(
@@ -57,14 +58,13 @@ async def entrypoint(ctx: agents.JobContext):
 
     # 7. handle disconnect
     ctx.room.on(
-            "participant_disconnected",
-            lambda p: asyncio.create_task(handle_participant_disconnected(session, ctx, p)),  # noqa: E501
-        )
+        "participant_disconnected",
+        lambda p: asyncio.create_task(handle_participant_disconnected(session, ctx, p)),
+    )
 
     # 8. shutdown agent
     ctx.add_shutdown_callback(lambda: handle_shutdown(session, ctx))
 
+
 if __name__ == "__main__":
-    agents.cli.run_app(
-        agents.WorkerOptions(entrypoint_fnc=entrypoint)
-    )
+    agents.cli.run_app(agents.WorkerOptions(entrypoint_fnc=entrypoint))
