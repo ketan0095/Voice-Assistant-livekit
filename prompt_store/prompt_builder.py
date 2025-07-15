@@ -3,6 +3,7 @@
 from prompt_store.master_prompt import VOICE_AGENT_PERSONA, MASTER_PROMPT_TEMPLATE
 from prompt_store.global_rules import get_global_rules_text
 
+
 def build_persona(org_info: dict) -> str:
     """
     Construct a persona desc string for the voice agent using organization metadata.
@@ -19,7 +20,9 @@ def build_persona(org_info: dict) -> str:
         trading_hours=org_info.get("trading_hours", "9 AM - 5 PM, Monday to Friday"),
         address=org_info.get("address", "Not Provided"),
         service_types=org_info.get("service_types", "General support"),
-        service_modalities=org_info.get("service_modalities", "in-person and telehealth"),  # noqa: E501
+        service_modalities=org_info.get(
+            "service_modalities", "in-person and telehealth"
+        ),
     )
 
 
@@ -48,8 +51,7 @@ def build_prompt(
     )
 
 
-
-def build_context(org_info:str) -> str:
+def build_context(org_info: str) -> str:
     """
     Build a complete prompt using sample organization data and test conversation.
 
@@ -58,9 +60,7 @@ def build_context(org_info:str) -> str:
     """
 
     conversation_context = (
-        "User: I need to book a GP appointment\n"
-        "Agent: Sure, I can help with that."
+        "User: I need to book a GP appointment\nAgent: Sure, I can help with that."
     )
 
     return build_prompt(org_info, conversation_context)
-

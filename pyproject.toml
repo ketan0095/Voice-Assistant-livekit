@@ -11,7 +11,8 @@ dependencies = [
     "livekit-agents[deepgram,elevenlabs,openai,silero,speechmatics,turn-detector,anthropic,google,azure]>=1.1.6",
     "livekit-plugins-noise-cancellation>=0.2.4",
     "protobuf==4.25.0",
-    "python-dotenv"
+    "python-dotenv",
+    "pylint"
 
 ]
 
@@ -27,3 +28,6 @@ dev = [
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = ["fixme","broad-except","logging-fstring-interpolation"]
+
+[tool.setuptools]
+packages = ["agent", "config", "prompt_store","utils"]

@@ -1,3 +1,4 @@
+"""Handle voice agent session."""
 from livekit.agents import AgentSession, RoomInputOptions
 from livekit.plugins import noise_cancellation
 from config.config_llm import get_azure_openai_llm

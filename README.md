@@ -134,7 +134,7 @@ uv add --dev ruff
 
 ## 📄 License
 
-MIT © 2025 Ketan Krishna Shetye
+MIT © 2025 Ketan Shetye
 
 
 
