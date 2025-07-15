@@ -8,8 +8,10 @@ dependencies = [
     "cffi==1.17.1",
     "cryptography==45.0.2",
     "pycparser==2.22",
-    "livekit==0.15.0",
-    "protobuf==4.23.3"
+    "livekit-agents[deepgram,elevenlabs,openai,silero,speechmatics,turn-detector,anthropic,google,azure]>=1.1.6",
+    "livekit-plugins-noise-cancellation>=0.2.4",
+    "protobuf==4.25.0",
+    "python-dotenv"
 
 ]
 
