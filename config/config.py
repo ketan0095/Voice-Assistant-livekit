@@ -1,10 +1,11 @@
 """Handle all secret keys"""
 import os
-
+from dataclasses import dataclass
 from dotenv import load_dotenv
 
 load_dotenv()
 
+@dataclass
 class Config:
     """Gather all required env vars."""
     # ------- LLM provider ----
