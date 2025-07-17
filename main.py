@@ -56,7 +56,8 @@ async def entrypoint(ctx: agents.JobContext):
     agent_logger.info("Updated prompt : " + str(call_context["prompt"]))
 
     # 3. Build Agent
-    agent = Assistant(session, agent_logger, instructions=call_context["prompt"])
+    agent = Assistant(session, agent_logger, instructions=call_context["prompt"],
+                      call_context=call_context)
 
     # 4. Start session
     await session.start(
