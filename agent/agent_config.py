@@ -1,5 +1,6 @@
 
 """Gather all agent config"""
+from livekit.agents import Agent
 
 DEFAULT_WELCOME_MSG ="Hello, how are you?"
 DEFAULT_CLOSING_MSG ="Thank you, have a good day."
@@ -13,3 +14,8 @@ def get_all_configs():
             "closing":DEFAULT_CLOSING_MSG
         }
     }
+
+async def update_agent_tools(agent:Agent):
+    """To dynamically update agent tools."""
+    tools = [tool for tool in agent.tools]
+    await agent.update_tools(tools)
