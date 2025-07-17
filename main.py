@@ -35,13 +35,29 @@ async def entrypoint(ctx: agents.JobContext):
             "service_types": "General Practice, Physiotherapy, Pathology",
             "service_modalities": "in-person, telehealth, home visit",
         },
+        "agent_details":{
+            "agent_name":"ketan",
+            "agent_settings":{
+                "custom_msg":{
+                "welcome_settings":{
+                    "welcome_msg":"hello, how are you?",
+                    "welcome_delay":2
+                },
+                "closing_settings":{
+                    "closing_msg":"Thank you, have a good day.",
+                    "closing_delay":1
+                }
+            },
+            }
+        }
     }
     call_context["prompt"] = build_context(call_context["org_info"])
 
     agent_logger.info("Updated prompt : " + str(call_context["prompt"]))
 
     # 3. Build Agent
-    agent = Assistant(session, agent_logger, instructions=call_context["prompt"])
+    agent = Assistant(session, agent_logger, instructions=call_context["prompt"],
+                      call_context=call_context)
 
     # 4. Start session
     await session.start(
