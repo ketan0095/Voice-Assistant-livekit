@@ -5,6 +5,7 @@ import asyncio
 from livekit import agents
 
 from agent.agent import Assistant
+from agent.agent_config import update_agent_tools
 from agent.session import create_session, get_room_options
 from prompt_store.prompt_builder import build_context
 from utils.handler import (
@@ -80,6 +81,9 @@ async def entrypoint(ctx: agents.JobContext):
 
     # 8. shutdown agent
     ctx.add_shutdown_callback(lambda: handle_shutdown(session, ctx))
+
+    # 9. Updating Agent Tools.
+    asyncio.create_task(update_agent_tools(agent))
 
 
 if __name__ == "__main__":
