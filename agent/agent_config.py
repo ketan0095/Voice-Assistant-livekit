@@ -17,5 +17,6 @@ def get_all_configs():
 
 async def update_agent_tools(agent:Agent):
     """To dynamically update agent tools."""
+    # TODO: Need to update tools as per requirements
     tools = [tool for tool in agent.tools]
     await agent.update_tools(tools)
