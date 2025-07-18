@@ -28,7 +28,6 @@ async def entrypoint(ctx: agents.JobContext):
     call_context: CallContext = {
         "prompt": "",
         "org_info": {
-            "agent_name": "John",
             "company_name": "MediLink Health",
             "agent_goal": "help users schedule, manage,appointments seamlessly",
             "trading_hours": "8 AM - 8 PM, Monday to Saturday",
@@ -52,7 +51,7 @@ async def entrypoint(ctx: agents.JobContext):
             }
         }
     }
-    call_context["prompt"] = build_context(call_context["org_info"])
+    call_context["prompt"] = build_context(call_context)
 
     agent_logger.info("Updated prompt : " + str(call_context["prompt"]))
 

@@ -2,9 +2,9 @@
 
 from prompt_store.master_prompt import VOICE_AGENT_PERSONA, MASTER_PROMPT_TEMPLATE
 from prompt_store.global_rules import get_global_rules_text
+from utils.types import CallContext
 
-
-def build_persona(org_info: dict) -> str:
+def build_persona(call_context: CallContext) -> str:
     """
     Construct a persona desc string for the voice agent using organization metadata.
 
@@ -13,8 +13,12 @@ def build_persona(org_info: dict) -> str:
     Returns:
         str: A formatted string representing the voice agent's persona.
     """
+
+    org_info = call_context.get("org_info",{})
+    agent_details =call_context.get("agent_details",{})
+
     return VOICE_AGENT_PERSONA.format(
-        agent_name=org_info.get("agent_name", "Assistant"),
+        agent_name=agent_details.get("agent_name", "Assistant"),
         company_name=org_info.get("company_name", "Your Company"),
         agent_goal=org_info.get("agent_goal", "assist users with their queries"),
         trading_hours=org_info.get("trading_hours", "9 AM - 5 PM, Monday to Friday"),
@@ -27,7 +31,7 @@ def build_persona(org_info: dict) -> str:
 
 
 def build_prompt(
-    org_info: dict,
+    call_context: CallContext,
     conversation_context: str,
 ) -> str:
     """
@@ -41,7 +45,7 @@ def build_prompt(
     Returns:
         str: A fully assembled prompt string suitable for passing to an LLM.
     """
-    persona = build_persona(org_info)
+    persona = build_persona(CallContext[""])
     global_rules = get_global_rules_text()
 
     return MASTER_PROMPT_TEMPLATE.format(
@@ -51,7 +55,7 @@ def build_prompt(
     )
 
 
-def build_context(org_info: str) -> str:
+def build_context(call_context: CallContext) -> str:
     """
     Build a complete prompt using sample organization data and test conversation.
 
@@ -63,4 +67,4 @@ def build_context(org_info: str) -> str:
         "User: I need to book a GP appointment\nAgent: Sure, I can help with that."
     )
 
-    return build_prompt(org_info, conversation_context)
+    return build_prompt(call_context, conversation_context)
