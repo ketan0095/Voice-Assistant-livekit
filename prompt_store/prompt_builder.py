@@ -45,7 +45,7 @@ def build_prompt(
     Returns:
         str: A fully assembled prompt string suitable for passing to an LLM.
     """
-    persona = build_persona(CallContext[""])
+    persona = build_persona(call_context)
     global_rules = get_global_rules_text()
 
     return MASTER_PROMPT_TEMPLATE.format(
