@@ -1,7 +1,7 @@
 """Agent runner."""
 
-import asyncio
 import os
+import asyncio
 from livekit import agents
 from livekit.plugins import tavus
 from agent.agent import Assistant
@@ -66,7 +66,7 @@ async def entrypoint(ctx: agents.JobContext):
       persona_id=os.getenv('TAVUS_PERSONA_ID'),
     )
 
-    # Start the avatar and wait for it to join
+    # # Start the avatar and wait for it to join
     await avatar.start(session, room=ctx.room)
 
 

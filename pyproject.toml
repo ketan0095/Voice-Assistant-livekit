@@ -10,6 +10,7 @@ dependencies = [
     "pycparser==2.22",
     "livekit-agents[deepgram,elevenlabs,openai,silero,speechmatics,turn-detector,anthropic,google,azure]>=1.1.6",
     "livekit-plugins-noise-cancellation>=0.2.4",
+    "livekit-agents-tavus>=0.1.0",
     "protobuf==4.25.0",
     "python-dotenv",
     "pylint"
