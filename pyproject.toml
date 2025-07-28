@@ -8,13 +8,13 @@ dependencies = [
     "cffi==1.17.1",
     "cryptography==45.0.2",
     "pycparser==2.22",
-    "livekit-agents[deepgram,elevenlabs,openai,silero,speechmatics,turn-detector,anthropic,google,azure]>=1.1.6",
+    "livekit-agents[deepgram,elevenlabs,openai,silero,speechmatics,turn-detector,anthropic,google,azure,tavus]~=1.0",
     "livekit-plugins-noise-cancellation>=0.2.4",
     "protobuf==4.25.0",
     "python-dotenv",
     "pylint"
-
 ]
+
 
 [tool.ruff]
 line-length = 88

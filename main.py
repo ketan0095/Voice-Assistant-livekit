@@ -1,12 +1,12 @@
 """Agent runner."""
 
+import os
 import asyncio
-
 from livekit import agents
-
+from livekit.plugins import tavus
 from agent.agent import Assistant
 from agent.agent_config import update_agent_tools
-from agent.session import create_session, get_room_options
+from agent.session import create_session, get_room_options,get_room_output_options
 from prompt_store.prompt_builder import build_context
 from utils.handler import (
     handle_participant_disconnected,
@@ -28,7 +28,6 @@ async def entrypoint(ctx: agents.JobContext):
     call_context: CallContext = {
         "prompt": "",
         "org_info": {
-            "agent_name": "John",
             "company_name": "MediLink Health",
             "agent_goal": "help users schedule, manage,appointments seamlessly",
             "trading_hours": "8 AM - 8 PM, Monday to Saturday",
@@ -52,7 +51,7 @@ async def entrypoint(ctx: agents.JobContext):
             }
         }
     }
-    call_context["prompt"] = build_context(call_context["org_info"])
+    call_context["prompt"] = build_context(call_context)
 
     agent_logger.info("Updated prompt : " + str(call_context["prompt"]))
 
@@ -60,11 +59,23 @@ async def entrypoint(ctx: agents.JobContext):
     agent = Assistant(session, agent_logger, instructions=call_context["prompt"],
                       call_context=call_context)
 
+
+    # AI avatar integration BITHUAM
+    avatar = tavus.AvatarSession(
+      replica_id=os.getenv('TAVUS_REPLICA_ID'),
+      persona_id=os.getenv('TAVUS_PERSONA_ID'),
+    )
+
+    # # Start the avatar and wait for it to join
+    await avatar.start(session, room=ctx.room)
+
+
     # 4. Start session
     await session.start(
         room=ctx.room,
         agent=agent,
         room_input_options=get_room_options(),
+        room_output_options=get_room_output_options()
     )
 
     # 5. Connect room

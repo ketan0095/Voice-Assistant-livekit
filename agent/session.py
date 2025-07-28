@@ -1,5 +1,5 @@
 """Handle voice agent session."""
-from livekit.agents import AgentSession, RoomInputOptions
+from livekit.agents import AgentSession, RoomInputOptions,RoomOutputOptions
 from livekit.plugins import noise_cancellation
 from config.config_llm import get_azure_openai_llm
 from config.config_tts import get_elevenlabs_tts
@@ -22,3 +22,11 @@ def get_room_options() -> RoomInputOptions:
     return RoomInputOptions(
         noise_cancellation=noise_cancellation.BVC()
     )
+
+def get_room_output_options() -> RoomInputOptions:
+    """Collect room output options for agent."""
+    return RoomOutputOptions(
+         # Disable audio output to the room.
+         # The avatar plugin publishes audio separately.
+         audio_enabled=False,
+      )
