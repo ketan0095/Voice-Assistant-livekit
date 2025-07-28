@@ -179,7 +179,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "cffi" },
     { name = "cryptography" },
-    { name = "livekit-agents", extra = ["anthropic", "azure", "deepgram", "elevenlabs", "google", "openai", "silero", "speechmatics", "turn-detector"] },
+    { name = "livekit-agents", extra = ["anthropic", "azure", "deepgram", "elevenlabs", "google", "openai", "silero", "speechmatics", "tavus", "turn-detector"] },
     { name = "livekit-plugins-noise-cancellation" },
     { name = "protobuf" },
     { name = "pycparser" },
@@ -196,7 +196,7 @@ dev = [
 requires-dist = [
     { name = "cffi", specifier = "==1.17.1" },
     { name = "cryptography", specifier = "==45.0.2" },
-    { name = "livekit-agents", extras = ["deepgram", "elevenlabs", "openai", "silero", "speechmatics", "turn-detector", "anthropic", "google", "azure"], specifier = ">=1.1.6" },
+    { name = "livekit-agents", extras = ["deepgram", "elevenlabs", "openai", "silero", "speechmatics", "turn-detector", "anthropic", "google", "azure", "tavus"], specifier = "~=1.0" },
     { name = "livekit-plugins-noise-cancellation", specifier = ">=0.2.4" },
     { name = "protobuf", specifier = "==4.25.0" },
     { name = "pycparser", specifier = "==2.22" },
@@ -802,6 +802,9 @@ silero = [
 speechmatics = [
     { name = "livekit-plugins-speechmatics" },
 ]
+tavus = [
+    { name = "livekit-plugins-tavus" },
+]
 turn-detector = [
     { name = "livekit-plugins-turn-detector" },
 ]
@@ -942,6 +945,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a5/84/2eaf4dc7674dfa4a269d6e9dec20d1c35e865248e33f52ab07eb99e4195a/livekit_plugins_speechmatics-1.1.6.tar.gz", hash = "sha256:f9ed8a3a82ea7d39b0bf7247480954d37ad75200475900905e2374df13b9ef39", size = 8727, upload-time = "2025-07-10T17:33:08.02Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/30/11/2271d974a3decf60dc31377a859c823db7977c97b37ba303da9761b85c3d/livekit_plugins_speechmatics-1.1.6-py3-none-any.whl", hash = "sha256:798444bf957b4025d4f52e9c0e51154142efe9c1b41ca0d0f275674f75d38d09", size = 10148, upload-time = "2025-07-10T17:33:07.224Z" },
+]
+
+[[package]]
+name = "livekit-plugins-tavus"
+version = "1.1.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "livekit-agents" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/82/33/d891d0d5f944112d74734eed08e7f7139614d5b336087c1bd08f8b5e1b6e/livekit_plugins_tavus-1.1.6.tar.gz", hash = "sha256:3c2121a7a6c7bf5f6f15f48ac36daabf7cd32ddbd441aee33a8b1a214782b622", size = 5581, upload-time = "2025-07-10T17:33:11.097Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/62/7d/8ff9008933797025b70fc11999d494361d579c3fda277da18fa0c7a238c1/livekit_plugins_tavus-1.1.6-py3-none-any.whl", hash = "sha256:46a72f08af637bf3136c9f95e34496f0f562aa172faed0f8ee9432b74e6eaa9b", size = 6152, upload-time = "2025-07-10T17:33:10.329Z" },
 ]
 
 [[package]]

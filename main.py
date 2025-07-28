@@ -64,6 +64,7 @@ async def entrypoint(ctx: agents.JobContext):
     avatar = tavus.AvatarSession(
       replica_id=os.getenv('TAVUS_REPLICA_ID'),
       persona_id=os.getenv('TAVUS_PERSONA_ID'),
+      avatar_participant_name="Ketan-voice-agent"
     )
 
     # # Start the avatar and wait for it to join
