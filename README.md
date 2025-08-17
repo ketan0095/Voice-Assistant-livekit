@@ -3,7 +3,7 @@
 
 A brief description of what this project does and who it's for!
 
-# 🧠 LiveKit Voice Agent
+# 🧠 LiveKit Voice AI Agent
 
 A modular, real-time conversational voice agent built on top of [LiveKit Agents](https://docs.livekit.io/agents/), designed for natural, voice-based AI interaction over calls.  
 This project provides a blueprint for building HIPAA-friendly voice assistants for scheduling, support, automation, and more.
